@@ -27,12 +27,20 @@ with open(csvpath) as csvfile:
 
     #Initialize the variable to count the months
     total_months=0
+    total_amount=0
     
     #loop through the row in csv file
     for row in csvreader:
         #Increment the total month count for each row
         total_months+=1
+        total_amount +=int(row[1])
 
     #Print the total number of months
     print("Total Months: " + str(total_months))
+    print("Total: "+"$" +str(total_amount))
+
+   
+    
+
+
         
