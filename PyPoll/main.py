@@ -4,6 +4,10 @@ import csv
 
 #step2 store the file path associated with file
 csvpath=os.path.join('..','PyPoll', 'Resources', 'election_data.csv')
+#Step1.1 to write text file specify the path
+output_path=os.path.join("..", "PyPoll", "Analysis", "analysis.txt")
+#step1.2 open output file
+output_file=open(output_path, "w")
 
 #step 3 open the file in read mode and store/assign the content in variable csvfile
 with open(csvpath) as csvfile:
@@ -19,6 +23,10 @@ with open(csvpath) as csvfile:
 
     print("Election Results")
     print("--------------------------")
+    #step1.3 write in outputfile the print statements
+    output_file.write("Election Results\n")
+    output_file.write("--------------------------\n")
+
     total_votes=0
     candidates_votes={}
     
@@ -35,9 +43,15 @@ with open(csvpath) as csvfile:
     
     print("Total Votes: " + str(total_votes))
     print("------------------------")
+    #step1.4  convert print statement to output.writer
+    output_file.write("Total Votes: " + str(total_votes)+"\n")
+    output_file.write("------------------------\n")
+
     vote_percentages = {candidate_name: (vote_count / total_votes) * 100 for candidate_name, vote_count in candidates_votes.items()}
     for candidate_name, vote_percentage in vote_percentages.items():
         print(f"{candidate_name}: {vote_percentage:.3f} % ({candidates_votes[candidate_name]})")
+        #step1.5 convert print statement
+        output_file.write(f"{candidate_name}: {vote_percentage:.3f} % ({candidates_votes[candidate_name]})"+"\n")
     
     max_votes = max(candidates_votes.values())
     winning_candidates = [candidate for candidate, votes in candidates_votes.items() if votes == max_votes]
@@ -45,6 +59,12 @@ with open(csvpath) as csvfile:
     print("------------------------")
     print(f"Winner: {winning_candidates[0]}")
     print("------------------------")
+    #step 1.6
+    output_file.write("------------------------\n")
+    output_file.write(f"Winner: {winning_candidates[0]}"+"\n") 
+    output_file.write("------------------------\n")
+
+output_file.close()
 
     
   

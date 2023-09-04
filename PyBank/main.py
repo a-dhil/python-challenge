@@ -4,6 +4,10 @@ import csv
 
 #step2 store the file path associated with file
 csvpath=os.path.join('..','PyBank', 'Resources', 'budget_data.csv')
+#Step1.1 to write text file specify the path
+output_path=os.path.join("..", "PyBank", "Analysis", "analysis.txt")
+#step1.2 open output file
+output_file=open(output_path, "w")
 
 #step 3 open the file in read mode and store/assign the content in variable csvfile
 with open(csvpath) as csvfile:
@@ -24,6 +28,9 @@ with open(csvpath) as csvfile:
     #step 6 print the heading
     print("Financial Analysis")
     print("-----------------------")
+    #step1.3 write in outputfile the print statements
+    output_file.write("Financial Analysis\n")
+    output_file.write("--------------------------\n")
 
     #Step 7 Initialize the variable to count the months
     total_months=0
@@ -69,13 +76,21 @@ with open(csvpath) as csvfile:
     print("Total Months: " + str(total_months))
     #Print the total amount 
     print("Total: "+"$" +str(total_amount))
-    # print the average chnage
+    # print the average change
     print("Average Change: "+"$"+str(average_change))
     # print increase and decrease values
     print("Greatest Increase in Profits: " + str(monthly_increase_date)+" "+"("+"$"+str(monthly_increase)+")")
     print("Greatest Decrease in Profits: " + str(monthly_decrease_date)+" "+"("+"$"+str(monthly_decrease)+")")
 
+    #step1.4 write in output file the print statement
+   
+    output_file.write("Total Months: " + str(total_months)+"\n")
+    output_file.write("Total: "+"$" +str(total_amount)+"\n")
+    output_file.write("Average Change: "+"$"+str(average_change)+"\n")
+    output_file.write("Greatest Increase in Profits: " + str(monthly_increase_date)+" "+"("+"$"+str(monthly_increase)+")"+"\n")
+    output_file.write("Greatest Decrease in Profits: " + str(monthly_decrease_date)+" "+"("+"$"+str(monthly_decrease)+")"+"\n")
 
+output_file.close()
 
     
 
