@@ -22,11 +22,7 @@ with open(csvpath) as csvfile:
     total_votes=0
     candidates_votes={}
     
-    
- 
-  
     for row in csvreader:
-
         candidate_name=row[2]
 
         if candidate_name in candidates_votes:
@@ -36,17 +32,25 @@ with open(csvpath) as csvfile:
 
        
         total_votes+=1
-    vote_percentages = {candidate_name: (vote_count / total_votes) * 100 for candidate_name, vote_count in candidates_votes.items()}
-    for candidate_name, vote_percentage in vote_percentages.items():
-        print(f"{candidate_name}: {vote_percentage:.2f}%")
-
     
-        
-      
-       
     print("Total Votes: " + str(total_votes))
     print("------------------------")
-    print(candidates_votes)
+    vote_percentages = {candidate_name: (vote_count / total_votes) * 100 for candidate_name, vote_count in candidates_votes.items()}
+    for candidate_name, vote_percentage in vote_percentages.items():
+        print(f"{candidate_name}: {vote_percentage:.3f} % ({candidates_votes[candidate_name]})")
+    
+    max_votes = max(candidates_votes.values())
+    winning_candidates = [candidate for candidate, votes in candidates_votes.items() if votes == max_votes]
+
+    print("------------------------")
+    print(f"Winner: {winning_candidates[0]}")
+    print("------------------------")
+
+    
+  
+       
+   
+    
     
 
 
